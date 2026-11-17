@@ -1,0 +1,781 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "slides": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "content"
+              },
+              "title": {
+                "type": "string",
+                "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+              },
+              "paragraphs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "1-3 short explanatory paragraphs (plain text, no HTML or markdown)."
+              },
+              "key_points": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "0-4 short bullet points summarising the key takeaways (plain text). Use [] for none."
+              },
+              "image": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+                      },
+                      "alt_text": {
+                        "type": "string",
+                        "description": "Concise description of what the image shows, for screen-reader users."
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "alt_text"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Image shown on this slide, or null for no image. Only supplied source images may be used."
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "paragraphs",
+              "key_points",
+              "image"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "multiple_choice"
+              },
+              "title": {
+                "type": "string",
+                "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+              },
+              "question": {
+                "type": "string",
+                "description": "The question stem (plain text)."
+              },
+              "answers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "description": "Answer option (plain text)."
+                    },
+                    "correct": {
+                      "type": "boolean"
+                    },
+                    "feedback": {
+                      "type": "string",
+                      "description": "Shown when the student selects this option: explains why it is right or wrong."
+                    }
+                  },
+                  "required": [
+                    "text",
+                    "correct",
+                    "feedback"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "3-5 answer options; at least one correct and at least one incorrect."
+              },
+              "feedback": {
+                "type": "object",
+                "properties": {
+                  "all_correct": {
+                    "type": "string",
+                    "description": "Shown when the student gets everything right. One sentence that reinforces the key idea."
+                  },
+                  "not_all_correct": {
+                    "type": "string",
+                    "description": "Shown otherwise. One sentence that points the student back to the key idea without giving away the answers."
+                  }
+                },
+                "required": [
+                  "all_correct",
+                  "not_all_correct"
+                ],
+                "additionalProperties": false,
+                "description": "Overall feedback for the activity."
+              },
+              "image": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+                      },
+                      "alt_text": {
+                        "type": "string",
+                        "description": "Concise description of what the image shows, for screen-reader users."
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "alt_text"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Image shown on this slide, or null for no image. Only supplied source images may be used."
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "question",
+              "answers",
+              "feedback",
+              "image"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "drag_and_drop"
+              },
+              "title": {
+                "type": "string",
+                "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "categorise",
+                  "label_image"
+                ],
+                "description": "'categorise': items are sorted into labelled category zones. 'label_image': items are labels that students drop onto points of the slide's image (the image is required)."
+              },
+              "instructions": {
+                "type": "string",
+                "description": "One sentence telling the student what to drag where."
+              },
+              "zones": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "description": "Category / drop-zone label (max ~30 characters). In label_image mode it is hidden from students."
+                    },
+                    "position": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "x": {
+                              "type": "number",
+                              "description": "Horizontal position in percent of the image width (0 = left edge, 100 = right edge)."
+                            },
+                            "y": {
+                              "type": "number",
+                              "description": "Vertical position in percent of the image height (0 = top edge, 100 = bottom edge)."
+                            }
+                          },
+                          "required": [
+                            "x",
+                            "y"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "label_image mode: the point on the image where the centre of this drop zone goes. categorise mode: null."
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "position"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "categorise: 2-4 drop zones (categories). label_image: 3-6 drop zones, one per point to label."
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "description": "Text on the draggable card (max ~40 characters; max ~26 in label_image mode)."
+                    },
+                    "correct_zone": {
+                      "type": "string",
+                      "description": "Label of the zone this item belongs to - must exactly match one zone label."
+                    }
+                  },
+                  "required": [
+                    "text",
+                    "correct_zone"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "categorise: 2-8 draggable items; every zone must receive at least one item. label_image: exactly one item per zone."
+              },
+              "feedback": {
+                "type": "object",
+                "properties": {
+                  "all_correct": {
+                    "type": "string",
+                    "description": "Shown when the student gets everything right. One sentence that reinforces the key idea."
+                  },
+                  "not_all_correct": {
+                    "type": "string",
+                    "description": "Shown otherwise. One sentence that points the student back to the key idea without giving away the answers."
+                  }
+                },
+                "required": [
+                  "all_correct",
+                  "not_all_correct"
+                ],
+                "additionalProperties": false,
+                "description": "Overall feedback for the activity."
+              },
+              "image": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+                      },
+                      "alt_text": {
+                        "type": "string",
+                        "description": "Concise description of what the image shows, for screen-reader users."
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "alt_text"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Image shown on this slide, or null for no image. Only supplied source images may be used."
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "mode",
+              "instructions",
+              "zones",
+              "items",
+              "feedback",
+              "image"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "drag_the_words"
+              },
+              "title": {
+                "type": "string",
+                "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+              },
+              "instructions": {
+                "type": "string",
+                "description": "One sentence telling the student what to do."
+              },
+              "text": {
+                "type": "string",
+                "description": "Short passage (1-5 sentences, plain text). Each word or phrase the student must drag into place is wrapped in asterisks, e.g. 'Material is removed by *shearing* along the *shear plane*.' Use 3-8 draggable words. Never put asterisks anywhere else."
+              },
+              "distractors": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "0-3 plausible extra words that do not belong in any gap (plain text, no asterisks). Use [] for none."
+              },
+              "feedback": {
+                "type": "object",
+                "properties": {
+                  "all_correct": {
+                    "type": "string",
+                    "description": "Shown when the student gets everything right. One sentence that reinforces the key idea."
+                  },
+                  "not_all_correct": {
+                    "type": "string",
+                    "description": "Shown otherwise. One sentence that points the student back to the key idea without giving away the answers."
+                  }
+                },
+                "required": [
+                  "all_correct",
+                  "not_all_correct"
+                ],
+                "additionalProperties": false,
+                "description": "Overall feedback for the activity."
+              },
+              "image": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+                      },
+                      "alt_text": {
+                        "type": "string",
+                        "description": "Concise description of what the image shows, for screen-reader users."
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "alt_text"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Image shown on this slide, or null for no image. Only supplied source images may be used."
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "instructions",
+              "text",
+              "distractors",
+              "feedback",
+              "image"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "fill_in_the_blanks"
+              },
+              "title": {
+                "type": "string",
+                "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+              },
+              "instructions": {
+                "type": "string",
+                "description": "One sentence telling the student what to do."
+              },
+              "sentences": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "description": "One sentence (plain text) with ___ (three underscores) at each gap, e.g. 'When the depth of cut increases, the cutting ratio ___.' 1-2 gaps. No asterisks."
+                    },
+                    "blanks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "answer": {
+                            "type": "string",
+                            "description": "The answer the student types: 1-3 words or a number, written exactly as in \"options\". Only letters, digits, spaces, hyphens, decimal points, commas and % (no symbols, subscripts, Greek letters or formulas)."
+                          },
+                          "options": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "2-4 choices shown in bold brackets before the gap, e.g. [\"increases\", \"decreases\", \"stays the same\"]. Contains the answer exactly once; the others are plausible wrong answers of the same kind. Only letters, digits, spaces, hyphens, decimal points, commas and % (no symbols, subscripts, Greek letters or formulas)."
+                          }
+                        },
+                        "required": [
+                          "answer",
+                          "options"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "description": "One entry per ___ gap, in the order the gaps appear in the sentence."
+                    }
+                  },
+                  "required": [
+                    "text",
+                    "blanks"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "2-5 sentences, each with 1-2 gaps."
+              },
+              "feedback": {
+                "type": "object",
+                "properties": {
+                  "all_correct": {
+                    "type": "string",
+                    "description": "Shown when the student gets everything right. One sentence that reinforces the key idea."
+                  },
+                  "not_all_correct": {
+                    "type": "string",
+                    "description": "Shown otherwise. One sentence that points the student back to the key idea without giving away the answers."
+                  }
+                },
+                "required": [
+                  "all_correct",
+                  "not_all_correct"
+                ],
+                "additionalProperties": false,
+                "description": "Overall feedback for the activity."
+              },
+              "image": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+                      },
+                      "alt_text": {
+                        "type": "string",
+                        "description": "Concise description of what the image shows, for screen-reader users."
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "alt_text"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Image shown on this slide, or null for no image. Only supplied source images may be used."
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "instructions",
+              "sentences",
+              "feedback",
+              "image"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "mark_the_words"
+              },
+              "title": {
+                "type": "string",
+                "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+              },
+              "instructions": {
+                "type": "string",
+                "description": "One sentence telling the student which words to click."
+              },
+              "text": {
+                "type": "string",
+                "description": "Short text (1-4 sentences, plain text) naming several candidate words of the same kind. Each word that meets the criterion is wrapped in asterisks, e.g. 'The frame uses *steel*, glass, *aluminium* and rubber.' Only single words can be marked (no spaces inside the asterisks). Mark 2-5 words. Never put asterisks anywhere else."
+              },
+              "feedback": {
+                "type": "object",
+                "properties": {
+                  "all_correct": {
+                    "type": "string",
+                    "description": "Shown when the student gets everything right. One sentence that reinforces the key idea."
+                  },
+                  "not_all_correct": {
+                    "type": "string",
+                    "description": "Shown otherwise. One sentence that points the student back to the key idea without giving away the answers."
+                  }
+                },
+                "required": [
+                  "all_correct",
+                  "not_all_correct"
+                ],
+                "additionalProperties": false,
+                "description": "Overall feedback for the activity."
+              },
+              "image": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+                      },
+                      "alt_text": {
+                        "type": "string",
+                        "description": "Concise description of what the image shows, for screen-reader users."
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "alt_text"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Image shown on this slide, or null for no image. Only supplied source images may be used."
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "instructions",
+              "text",
+              "feedback",
+              "image"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "multimedia_choice"
+              },
+              "title": {
+                "type": "string",
+                "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+              },
+              "question": {
+                "type": "string",
+                "description": "The question stem (plain text), e.g. a description the student must match to one of the images."
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "image": {
+                      "type": "object",
+                      "properties": {
+                        "path": {
+                          "type": "string",
+                          "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+                        },
+                        "alt_text": {
+                          "type": "string",
+                          "description": "Concise description of what the image shows, for screen-reader users."
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "alt_text"
+                      ],
+                      "additionalProperties": false,
+                      "description": "The image shown as this option. Its alt_text describes what is visible without naming the answer (it is read out to screen-reader users)."
+                    },
+                    "correct": {
+                      "type": "boolean"
+                    },
+                    "feedback": {
+                      "type": "string",
+                      "description": "Shown when the student selects this option: explains the visual features that make it right or wrong."
+                    }
+                  },
+                  "required": [
+                    "image",
+                    "correct",
+                    "feedback"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "2-4 image options, each a different supplied image; at least one correct and at least one incorrect. Students see them labelled A, B, C, D in this order."
+              },
+              "feedback": {
+                "type": "object",
+                "properties": {
+                  "all_correct": {
+                    "type": "string",
+                    "description": "Shown when the student gets everything right. One sentence that reinforces the key idea."
+                  },
+                  "not_all_correct": {
+                    "type": "string",
+                    "description": "Shown otherwise. One sentence that points the student back to the key idea without giving away the answers."
+                  }
+                },
+                "required": [
+                  "all_correct",
+                  "not_all_correct"
+                ],
+                "additionalProperties": false,
+                "description": "Overall feedback for the activity."
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "question",
+              "options",
+              "feedback"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "summary"
+              },
+              "title": {
+                "type": "string",
+                "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+              },
+              "intro": {
+                "type": "string",
+                "description": "One sentence telling the student what to do, e.g. 'Choose the correct statement in each set.'"
+              },
+              "statement_sets": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "correct": {
+                      "type": "string",
+                      "description": "The one correct statement of this set (plain text, max ~25 words)."
+                    },
+                    "misconceptions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "1-3 plausible but incorrect statements on the same idea, similar in length and form to the correct one (plain text)."
+                    },
+                    "tip": {
+                      "type": "string",
+                      "description": "Optional hint shown on request, without giving away the answer. Use \"\" for none."
+                    }
+                  },
+                  "required": [
+                    "correct",
+                    "misconceptions",
+                    "tip"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "2-5 sets. Students pick the correct statement of each set in turn; the correct statements build up into a summary."
+              },
+              "feedback": {
+                "type": "object",
+                "properties": {
+                  "all_correct": {
+                    "type": "string",
+                    "description": "Shown when the student gets everything right. One sentence that reinforces the key idea."
+                  },
+                  "not_all_correct": {
+                    "type": "string",
+                    "description": "Shown otherwise. One sentence that points the student back to the key idea without giving away the answers."
+                  }
+                },
+                "required": [
+                  "all_correct",
+                  "not_all_correct"
+                ],
+                "additionalProperties": false,
+                "description": "Overall feedback for the activity."
+              },
+              "image": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+                      },
+                      "alt_text": {
+                        "type": "string",
+                        "description": "Concise description of what the image shows, for screen-reader users."
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "alt_text"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Image shown on this slide, or null for no image. Only supplied source images may be used."
+              }
+            },
+            "required": [
+              "type",
+              "title",
+              "intro",
+              "statement_sets",
+              "feedback",
+              "image"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "description": "The slides of the module, in presentation order."
+    }
+  },
+  "required": [
+    "slides"
+  ],
+  "additionalProperties": false
+}

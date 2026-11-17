@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "drag_and_drop"
+    },
+    "title": {
+      "type": "string",
+      "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "categorise",
+        "label_image"
+      ],
+      "description": "'categorise': items are sorted into labelled category zones. 'label_image': items are labels that students drop onto points of the slide's image (the image is required)."
+    },
+    "instructions": {
+      "type": "string",
+      "description": "One sentence telling the student what to drag where."
+    },
+    "zones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "Category / drop-zone label (max ~30 characters). In label_image mode it is hidden from students."
+          },
+          "position": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "description": "Horizontal position in percent of the image width (0 = left edge, 100 = right edge)."
+                  },
+                  "y": {
+                    "type": "number",
+                    "description": "Vertical position in percent of the image height (0 = top edge, 100 = bottom edge)."
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "label_image mode: the point on the image where the centre of this drop zone goes. categorise mode: null."
+          }
+        },
+        "required": [
+          "label",
+          "position"
+        ],
+        "additionalProperties": false
+      },
+      "description": "categorise: 2-4 drop zones (categories). label_image: 3-6 drop zones, one per point to label."
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Text on the draggable card (max ~40 characters; max ~26 in label_image mode)."
+          },
+          "correct_zone": {
+            "type": "string",
+            "description": "Label of the zone this item belongs to - must exactly match one zone label."
+          }
+        },
+        "required": [
+          "text",
+          "correct_zone"
+        ],
+        "additionalProperties": false
+      },
+      "description": "categorise: 2-8 draggable items; every zone must receive at least one item. label_image: exactly one item per zone."
+    },
+    "feedback": {
+      "type": "object",
+      "properties": {
+        "all_correct": {
+          "type": "string",
+          "description": "Shown when the student gets everything right. One sentence that reinforces the key idea."
+        },
+        "not_all_correct": {
+          "type": "string",
+          "description": "Shown otherwise. One sentence that points the student back to the key idea without giving away the answers."
+        }
+      },
+      "required": [
+        "all_correct",
+        "not_all_correct"
+      ],
+      "additionalProperties": false,
+      "description": "Overall feedback for the activity."
+    },
+    "image": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+            },
+            "alt_text": {
+              "type": "string",
+              "description": "Concise description of what the image shows, for screen-reader users."
+            }
+          },
+          "required": [
+            "path",
+            "alt_text"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Image shown on this slide, or null for no image. Only supplied source images may be used."
+    }
+  },
+  "required": [
+    "type",
+    "title",
+    "mode",
+    "instructions",
+    "zones",
+    "items",
+    "feedback",
+    "image"
+  ],
+  "additionalProperties": false
+}

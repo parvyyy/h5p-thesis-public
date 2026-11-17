@@ -1,0 +1,103 @@
+{
+  "title": "Turning Processes: Operations, Parameters and Lathe Selection",
+  "duration_minutes": 10,
+  "learning_objectives": [
+    "Describe turning and distinguish common lathe operations by tool motion and the feature produced.",
+    "Interpret the turning cutting variables and calculate the material removal rate.",
+    "Compare roughing and finishing, and explain how cutting forces affect machining quality.",
+    "Identify the main lathe components and choose a suitable work-holding method for a part.",
+    "Recognise boring, threading and taper turning, and apply basic design-for-turning guidelines."
+  ],
+  "outline": [
+    {
+      "topic": "Turning: What Moves and What Gets Cut?",
+      "type": "content",
+      "content": "Introduce turning: the workpiece rotates while the cutting tool feeds along it. Using the illustration, point out the rotating stock held in the chuck and the cutting tool. Mention that a lathe can also face, taper turn, bore, thread, part off and knurl, without teaching each one here.",
+      "image": "images/turning_rotation.png"
+    },
+    {
+      "topic": "Which Lathe Operation Enlarges a Hole?",
+      "type": "multimedia_choice",
+      "content": "Ask which operation should be used to enlarge an existing hole and machine an internal cylindrical feature. Correct answer: Image C (boring). Images A, B and D show taper turning, facing and threading. Students judge from the tool position and motion.",
+      "images": [
+        "images/operation_taper_turning.png",
+        "images/operation_facing.png",
+        "images/operation_boring.png",
+        "images/operation_threading.png"
+      ]
+    },
+    {
+      "topic": "Cutting Parameters and Material Removal Rate",
+      "type": "content",
+      "content": "Recap MRR = pi * D_avg * d * f * N, where D_avg = (D_o + D_f)/2. d is the radial depth of cut, f the feed per revolution and N the spindle speed in rev/min, giving MRR in mm^3/min. Increasing any one parameter increases MRR, but the settings must suit the workpiece material.",
+      "image": "images/turning_geometry.png"
+    },
+    {
+      "topic": "Calculate the Cutting Conditions",
+      "type": "fill_in_the_blanks",
+      "content": "Scenario: D_o = 41 mm, D_f = 39 mm, f = 0.1 mm/rev, N = 100 rev/min and pi = 3.14. Test that D_avg = 40 mm, the radial depth of cut d = 1 mm (half the diameter reduction) and MRR = 1256 mm^3/min. Optionally test that doubling N doubles MRR.",
+      "image": "images/turning_geometry.png"
+    },
+    {
+      "topic": "Roughing, Finishing and Process Quality",
+      "type": "content",
+      "content": "Contrast roughing (high feed, large depth of cut, fast material removal) with finishing (low feed, shallow cuts, focus on accuracy and surface finish). Explain that radial, cutting and thrust forces can bend the tool, causing vibration and loss of accuracy. Note that cutting fluids may help, depending on the material and process."
+    },
+    {
+      "topic": "Sort Roughing and Finishing Decisions",
+      "type": "drag_and_drop",
+      "content": "Students sort cutting decisions into \"Roughing\" and \"Finishing\". Roughing: higher feed, larger depth of cut, fast bulk removal, less focus on surface finish. Finishing: lower feed, shallow depth of cut, focus on dimensional accuracy, focus on a smooth surface finish."
+    },
+    {
+      "topic": "Why Do Cutting Forces Matter?",
+      "type": "multiple_choice",
+      "content": "Describe a slender tool that bends during turning and leaves an uneven finish. Ask for the best explanation of why the cutting forces matter. Correct answer: the forces deflect the tool, cause vibration or chatter and reduce dimensional accuracy. Distractors include that all forces act only in the feed direction, or that tool deflection improves accuracy.",
+      "image": "images/turning_forces.png"
+    },
+    {
+      "topic": "Locate the Lathe Components",
+      "type": "drag_and_drop",
+      "content": "Students label the bench-lathe photo: chuck, tool post, carriage and tailstock.",
+      "image": "images/bench_lathe_unlabelled.png"
+    },
+    {
+      "topic": "Choose a Work-Holding Device",
+      "type": "multiple_choice",
+      "content": "Scenario: an irregular or off-centre piece of stock needs each chuck jaw adjusted independently. Ask which work-holding device is most suitable. Correct answer: a four-jaw independent chuck. Distractors: a three-jaw self-centring chuck (round stock), a power chuck (high-volume production) and a faceplate (shapes a chuck cannot hold).",
+      "image": "images/workholding_options.png"
+    },
+    {
+      "topic": "Special Turning Operations in Context",
+      "type": "drag_the_words",
+      "content": "Write a short passage on special turning operations. Boring enlarges an existing hole, using a boring bar that limits deflection and chatter. Threading cuts screw threads, often on a CNC lathe. Taper turning makes a conical feature whose diameter changes along its length. Key terms: boring, boring bar, threading, CNC, taper turning.",
+      "image": "images/boring_photo.png"
+    },
+    {
+      "topic": "Design a Part That Can Be Turned Reliably",
+      "type": "multiple_choice",
+      "content": "Scenario: a designer's tapered part has poor clamping access and unnecessarily sharp corners. Ask which redesign best follows the design-for-turning guidelines. Correct answer: keep the part axially symmetric where possible, make sure it can be clamped, avoid sharp corners and consider the blank material and any special tools. Distractors make clamping harder, add non-symmetric surfaces or keep the sharp corners.",
+      "image": "images/taper_turning_diagram.png"
+    },
+    {
+      "topic": "Turning Processes: Final Review",
+      "type": "summary",
+      "content": "Review the key ideas: the rotating workpiece and the purpose of straight turning, facing and boring; the roles of D_avg, d, f and N in MRR; roughing versus finishing and the effect of cutting forces; the chuck, tailstock and choosing a three-jaw or four-jaw chuck; boring, threading, taper turning and designing a part that is easy to turn."
+    }
+  ],
+  "source_documents": [
+    "Lecture 5 - Turning Processes.pdf"
+  ],
+  "source_images": [
+    "images/turning_rotation.png",
+    "images/operation_taper_turning.png",
+    "images/operation_facing.png",
+    "images/operation_boring.png",
+    "images/operation_threading.png",
+    "images/turning_geometry.png",
+    "images/turning_forces.png",
+    "images/bench_lathe_unlabelled.png",
+    "images/workholding_options.png",
+    "images/boring_photo.png",
+    "images/taper_turning_diagram.png"
+  ]
+}

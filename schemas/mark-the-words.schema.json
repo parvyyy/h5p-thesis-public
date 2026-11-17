@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "mark_the_words"
+    },
+    "title": {
+      "type": "string",
+      "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+    },
+    "instructions": {
+      "type": "string",
+      "description": "One sentence telling the student which words to click."
+    },
+    "text": {
+      "type": "string",
+      "description": "Short text (1-4 sentences, plain text) naming several candidate words of the same kind. Each word that meets the criterion is wrapped in asterisks, e.g. 'The frame uses *steel*, glass, *aluminium* and rubber.' Only single words can be marked (no spaces inside the asterisks). Mark 2-5 words. Never put asterisks anywhere else."
+    },
+    "feedback": {
+      "type": "object",
+      "properties": {
+        "all_correct": {
+          "type": "string",
+          "description": "Shown when the student gets everything right. One sentence that reinforces the key idea."
+        },
+        "not_all_correct": {
+          "type": "string",
+          "description": "Shown otherwise. One sentence that points the student back to the key idea without giving away the answers."
+        }
+      },
+      "required": [
+        "all_correct",
+        "not_all_correct"
+      ],
+      "additionalProperties": false,
+      "description": "Overall feedback for the activity."
+    },
+    "image": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+            },
+            "alt_text": {
+              "type": "string",
+              "description": "Concise description of what the image shows, for screen-reader users."
+            }
+          },
+          "required": [
+            "path",
+            "alt_text"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Image shown on this slide, or null for no image. Only supplied source images may be used."
+    }
+  },
+  "required": [
+    "type",
+    "title",
+    "instructions",
+    "text",
+    "feedback",
+    "image"
+  ],
+  "additionalProperties": false
+}

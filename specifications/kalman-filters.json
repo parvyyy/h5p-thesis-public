@@ -1,0 +1,96 @@
+{
+  "title": "Gaussian PDFs and Kalman Filtering: Prediction and Update",
+  "duration_minutes": 10,
+  "learning_objectives": [
+    "Explain why Gaussian PDFs make recursive Bayesian state estimation practical.",
+    "Interpret the mean and covariance of a Gaussian random vector, including the shape of its scatter plot.",
+    "Apply the rules for sums and linear transformations of Gaussian random variables.",
+    "Use a linear Gaussian state model to predict a state estimate and its covariance.",
+    "Interpret the Kalman update terms and calculate a scalar posterior estimate and variance."
+  ],
+  "outline": [
+    {
+      "topic": "Why Gaussian Estimation?",
+      "type": "content",
+      "content": "Recap the Bayesian estimator: the prediction uses the dynamics model and the update uses available measurements. Explain that general PDFs are hard to compute and store, whereas a Gaussian is fully described by its expected value and covariance. Using the histograms, show the Central Limit Theorem motivation: averages of independent uniform random variables look increasingly Gaussian.",
+      "image": "images/clt_histograms.png"
+    },
+    {
+      "topic": "Recognise Covariance from a Scatter Plot",
+      "type": "multimedia_choice",
+      "content": "Ask which scatter plot shows a strong negative covariance between the two components. Correct answer: Image C, a narrow cloud sloping downwards. Image A shows weak dependency, Image B a strong positive dependency and Image D a near-perfect positive dependency. Feedback links the direction and width of each cloud to the off-diagonal covariance.",
+      "images": [
+        "images/covariance_weak.png",
+        "images/covariance_positive.png",
+        "images/covariance_negative.png",
+        "images/covariance_strong_positive.png"
+      ]
+    },
+    {
+      "topic": "Mean, Variance and Covariance",
+      "type": "fill_in_the_blanks",
+      "content": "Use the Gaussian curve to test that the expected value sets the centre of the distribution and that a larger variance means more spread and uncertainty. For a Gaussian random vector, test that the mean is a vector and the covariance a square matrix, whose diagonal elements are the variances of the components and whose off-diagonal elements describe statistical dependency.",
+      "image": "images/gaussian_1d.png"
+    },
+    {
+      "topic": "How a Linear Transformation Changes Uncertainty",
+      "type": "multiple_choice",
+      "content": "Use the lecture's scalar example: x is Gaussian with expected value 5 and variance 1, and z = 3*x. Ask for the expected value and variance of z. Correct answer: (15, 9), since the variance is multiplied by A squared. Distractors include (15, 3), which confuses variance with standard deviation, (8, 4) and (5, 9). Feedback states the rule: mean A*x_hat and covariance A*P*A^T."
+    },
+    {
+      "topic": "Which Gaussian Operation Is Being Used?",
+      "type": "drag_and_drop",
+      "content": "Students sort descriptions into \"Sum of independent Gaussians\", \"Linear transformation\" and \"Product of Gaussian PDFs\". Items include adding the covariances of two independent random variables, transforming a vector as A*x + b, propagating a covariance as A*P*A^T, and combining a prior PDF with a measurement likelihood to form the posterior. Distinguish multiplying PDFs from multiplying the random variables themselves."
+    },
+    {
+      "topic": "Prediction in the Linear Kalman Filter",
+      "type": "content",
+      "content": "Recap the linear state model x(k+1) = A*x(k) + B*u(k) + xi(k), where xi is independent zero-mean Gaussian process noise. Using the prediction equations, introduce the predicted mean A*x_hat + B*u and the predicted covariance A*P*A^T + Q, where Q is the process-noise covariance. Explain that Q adds the uncertainty introduced by the model at each step.",
+      "image": "images/linear_prediction_equations.png"
+    },
+    {
+      "topic": "Calculate One Scalar Prediction",
+      "type": "fill_in_the_blanks",
+      "content": "Give a scalar prediction example: x_hat = 4, P = 2, A = 2, B = 1, u = 3 and process-noise variance Q = 1. Test the predicted mean (2*4 + 1*3 = 11), the propagated variance before process noise (2^2 * 2 = 8) and the final variance after adding Q (9). Wrong options include multiplying the variance by A instead of A squared."
+    },
+    {
+      "topic": "What if the Sensor Sends No Measurement?",
+      "type": "multiple_choice",
+      "content": "Describe a robot whose estimator has just predicted its state, but the expected sensor measurement does not arrive. Ask what the estimator should do next. Correct answer: skip the update, keep the predicted mean and covariance as the current estimate, and continue predicting. Distractors stop estimating until the sensor returns, set the covariance to zero, or update with an invented measurement."
+    },
+    {
+      "topic": "From Prior to Posterior: Kalman Update",
+      "type": "content",
+      "content": "Recap the measurement model y = H*x + b + eta, where eta is zero-mean noise with covariance R. Using the update equations, define the expected output y_hat = H*x_hat + b, the innovation z = y - y_hat, the innovation covariance S = H*P*H^T + R and the Kalman gain K = P*H^T*S^-1. Explain that the posterior mean x_hat + K*z uses the measurement, and that the covariance is also updated.",
+      "image": "images/kf_update_equations.png"
+    },
+    {
+      "topic": "Match the Kalman Update Terms",
+      "type": "drag_the_words",
+      "content": "Write a short passage that follows the order of the Kalman update: start from the prior, predict the expected output, compare it with the measurement to get the innovation, account for the measurement noise, apply the Kalman gain and obtain the posterior. Do not confuse the innovation z with its covariance S. Key terms: prior, expected output, innovation, measurement noise, Kalman gain, posterior."
+    },
+    {
+      "topic": "Make One Scalar Kalman Correction",
+      "type": "multiple_choice",
+      "content": "Give a scalar update example: prior mean 4, prior variance 4, H = 1, b = 0, measurement y = 5 and noise variance R = 1. Ask for the posterior mean and variance. Correct answer: (4.8, 0.8), from innovation z = 1, S = 5 and K = 0.8. Distractors ignore the gain, keep the prior variance, or add R to the variance. Feedback notes that the variance falls because a measurement was used."
+    },
+    {
+      "topic": "Gaussian Estimators: Final Review",
+      "type": "summary",
+      "content": "Review the key ideas: a Gaussian is described by its mean and covariance; diagonal covariance terms are variances and off-diagonal terms show dependency; prediction transforms the mean by A and the covariance by A*P*A^T, then adds Q; prediction always runs, but the update needs a measurement; the innovation, Kalman gain and R determine the posterior correction."
+    }
+  ],
+  "source_documents": [
+    "[MTRN4010_2026]_LectureWeek07a][GaussianPDFs_GaussianEstimators] (1).pdf"
+  ],
+  "source_images": [
+    "images/clt_histograms.png",
+    "images/covariance_weak.png",
+    "images/covariance_positive.png",
+    "images/covariance_negative.png",
+    "images/covariance_strong_positive.png",
+    "images/gaussian_1d.png",
+    "images/linear_prediction_equations.png",
+    "images/kf_update_equations.png"
+  ]
+}

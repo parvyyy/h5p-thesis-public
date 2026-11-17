@@ -1,0 +1,90 @@
+{
+  "title": "Data Analysis with NumPy",
+  "duration_minutes": 10,
+  "learning_objectives": [
+    "Trace nested for-loops that count readings above a threshold.",
+    "Interpret the shape, axes, indexing and slicing of two-dimensional NumPy arrays.",
+    "Choose the right NumPy reduction and axis, and distinguish maximum values from their positions.",
+    "Apply elementwise comparisons, Boolean operators and np.diff() to sensor readings.",
+    "Explain how reshape(), ravel() and dtype describe or change an array, and interpret the output of np.where()."
+  ],
+  "outline": [
+    {
+      "topic": "Warehouse Data: From Sequences to Arrays",
+      "type": "content",
+      "content": "Revisit the frozen-food warehouse example: five thermometers, ten readings each, stored as a list of lists. The outer list holds the thermometers and each inner list holds one thermometer's readings over time. The goal is to count how often each thermometer goes above a temperature threshold.",
+      "image": "images/warehouse_readings.png"
+    },
+    {
+      "topic": "Trace the Nested Loops",
+      "type": "drag_the_words",
+      "content": "Write a short passage describing the nested-loop solution to the warehouse counting problem. The outer loop takes one thermometer at a time and resets a counter. The inner loop visits each reading and increments the counter when it exceeds the threshold. The count is appended to the results after each thermometer."
+    },
+    {
+      "topic": "Understanding 2-D Array Coordinates",
+      "type": "content",
+      "content": "Recap converting a list of lists into a 2-D array with np.array(). Explain zero-based indexing as array[row, column] and shape as a (rows, columns) tuple, such as (5, 10). Explain that axis 0 runs down the rows and axis 1 runs across the columns.",
+      "image": "images/array_axes.png"
+    },
+    {
+      "topic": "Selecting a 2-D Slice",
+      "type": "multiple_choice",
+      "content": "Using array2, ask which slice returns the first two rows and the second and third columns. Correct answer: array2[0:2, 1:3]. Distractors swap rows and columns, give a 1-D slice, or shift the start and stop indices.",
+      "image": "images/slicing_array.png"
+    },
+    {
+      "topic": "Choose the Correct Reduction Axis",
+      "type": "drag_and_drop",
+      "content": "Students sort NumPy expressions into \"One result per thermometer\", \"One result per time point\" and \"One result for the whole array\". Use np.sum() and np.max() with axis=1, with axis=0 and with no axis. Each row is a thermometer and each column is a time point."
+    },
+    {
+      "topic": "Maximum Value or Location?",
+      "type": "multiple_choice",
+      "content": "Ask which call finds the thermometer (row index) with the highest reading at each time point. Correct answer: np.argmax(temp_array, axis=0). Distractors use np.max(), which returns values rather than positions, or axis=1, which works along each row."
+    },
+    {
+      "topic": "Count Readings Above a Threshold",
+      "type": "fill_in_the_blanks",
+      "content": "Test that temp_array > threshold gives a Boolean array of the same shape. Test that np.sum() counts the True values and that axis=1 gives one count per thermometer. Test that > excludes readings equal to the threshold, while >= includes them."
+    },
+    {
+      "topic": "Combine Two Sensor Conditions",
+      "type": "multiple_choice",
+      "content": "Ask how to count, for each thermometer, the readings strictly between two limits. Correct answer: np.sum((temp_array > low) & (temp_array < high), axis=1). Distractors use Python's and, use | instead of &, leave out the parentheses, or sum along axis 0."
+    },
+    {
+      "topic": "Flattening, Reshaping and Data Types",
+      "type": "content",
+      "content": "Using the lecture's 3-by-4 example, explain that ravel() flattens an array row by row into 1-D. Explain that reshape() arranges the same elements into a new shape, such as 4-by-3. Contrast both with dtype, which describes the type of the stored elements, such as int or float.",
+      "image": "images/reshape_ravel.png"
+    },
+    {
+      "topic": "Differences Along the Time Axis",
+      "type": "multiple_choice",
+      "content": "Treat the 3-by-4 array as three rows of four readings over time. Ask which expression gives the differences between consecutive readings in each row. Correct answer: np.diff(array, axis=1), which gives three differences per row. Distractors work along axis 0 or compute a summary statistic.",
+      "image": "images/diff_array.png"
+    },
+    {
+      "topic": "Find Row and Column Positions with np.where()",
+      "type": "fill_in_the_blanks",
+      "content": "Using the 3-by-4 array, test what np.where(array1 == 7) returns. It returns a tuple of two arrays: row indices first, then column indices. The single 7 is at row 1, column 3 (zero-based). Stress that np.where() gives positions, not the matching values.",
+      "image": "images/where_array.png"
+    },
+    {
+      "topic": "NumPy Data Analysis: Final Review",
+      "type": "summary",
+      "content": "Review the key ideas: nested loops over thermometers and readings; axis=0 versus axis=1; Boolean masks and counting True values; np.diff() versus reshape() and ravel(); np.where() returning a tuple of index arrays. Focus on interpretation rather than memorising syntax."
+    }
+  ],
+  "source_documents": [
+    "ENGG1811 NumPy Data Analysis.pdf"
+  ],
+  "source_images": [
+    "images/warehouse_readings.png",
+    "images/array_axes.png",
+    "images/slicing_array.png",
+    "images/reshape_ravel.png",
+    "images/diff_array.png",
+    "images/where_array.png"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "multimedia_choice"
+    },
+    "title": {
+      "type": "string",
+      "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+    },
+    "question": {
+      "type": "string",
+      "description": "The question stem (plain text), e.g. a description the student must match to one of the images."
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+              },
+              "alt_text": {
+                "type": "string",
+                "description": "Concise description of what the image shows, for screen-reader users."
+              }
+            },
+            "required": [
+              "path",
+              "alt_text"
+            ],
+            "additionalProperties": false,
+            "description": "The image shown as this option. Its alt_text describes what is visible without naming the answer (it is read out to screen-reader users)."
+          },
+          "correct": {
+            "type": "boolean"
+          },
+          "feedback": {
+            "type": "string",
+            "description": "Shown when the student selects this option: explains the visual features that make it right or wrong."
+          }
+        },
+        "required": [
+          "image",
+          "correct",
+          "feedback"
+        ],
+        "additionalProperties": false
+      },
+      "description": "2-4 image options, each a different supplied image; at least one correct and at least one incorrect. Students see them labelled A, B, C, D in this order."
+    },
+    "feedback": {
+      "type": "object",
+      "properties": {
+        "all_correct": {
+          "type": "string",
+          "description": "Shown when the student gets everything right. One sentence that reinforces the key idea."
+        },
+        "not_all_correct": {
+          "type": "string",
+          "description": "Shown otherwise. One sentence that points the student back to the key idea without giving away the answers."
+        }
+      },
+      "required": [
+        "all_correct",
+        "not_all_correct"
+      ],
+      "additionalProperties": false,
+      "description": "Overall feedback for the activity."
+    }
+  },
+  "required": [
+    "type",
+    "title",
+    "question",
+    "options",
+    "feedback"
+  ],
+  "additionalProperties": false
+}

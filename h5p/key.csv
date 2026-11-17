@@ -1,0 +1,49 @@
+code,spec,architecture,run_order
+PFAJ,dh,Single-Request,16
+3N34,dh,Single-Request,32
+6RH3,dh,Single-Request,3
+PYX6,dh,Role-Specialised,18
+2UFJ,dh,Role-Specialised,22
+5G2W,dh,Role-Specialised,7
+6NCX,kalman filters,Single-Request,1
+YFFX,kalman filters,Single-Request,26
+V2NE,kalman filters,Single-Request,2
+AKD8,kalman filters,Role-Specialised,2
+7PJF,kalman filters,Role-Specialised,19
+3HB3,kalman filters,Role-Specialised,8
+GQYR,kmaps,Single-Request,5
+PEFP,kmaps,Single-Request,20
+G9BQ,kmaps,Single-Request,10
+Y3SN,kmaps,Role-Specialised,14
+Q7RP,kmaps,Role-Specialised,31
+JTCX,kmaps,Role-Specialised,1
+AQXV,loops,Single-Request,21
+S5BY,loops,Single-Request,24
+ZU3W,loops,Single-Request,13
+HFZR,loops,Role-Specialised,7
+4T54,loops,Role-Specialised,25
+DPJX,loops,Role-Specialised,14
+GUEN,machining,Single-Request,4
+ZXPV,machining,Single-Request,6
+VV3U,machining,Single-Request,15
+3QWS,machining,Role-Specialised,10
+2YXZ,machining,Role-Specialised,11
+QTYU,machining,Role-Specialised,5
+MH8C,numpy,Single-Request,28
+6R7P,numpy,Single-Request,29
+T2EZ,numpy,Single-Request,4
+NY9D,numpy,Role-Specialised,3
+YX7M,numpy,Role-Specialised,8
+ZAGB,numpy,Role-Specialised,6
+XVYS,routh hurwitz,Single-Request,12
+RVTC,routh hurwitz,Single-Request,27
+69C7,routh hurwitz,Single-Request,16
+FNUU,routh hurwitz,Role-Specialised,13
+DKMH,routh hurwitz,Role-Specialised,30
+7GWY,routh hurwitz,Role-Specialised,11
+W5WM,turning,Single-Request,9
+EEKJ,turning,Single-Request,23
+T82X,turning,Single-Request,12
+NU4K,turning,Role-Specialised,15
+GYKK,turning,Role-Specialised,17
+Z6FW,turning,Role-Specialised,9

@@ -1,0 +1,92 @@
+{
+  "title": "Fundamentals of Machining",
+  "duration_minutes": 10,
+  "learning_objectives": [
+    "Identify the main factors used to assess machinability.",
+    "Explain the mechanics of orthogonal cutting and the cutting ratio.",
+    "Distinguish common chip types and their effects on the cutting process.",
+    "Describe how cutting conditions affect surface finish and surface integrity.",
+    "Explain the main functions of cutting fluids."
+  ],
+  "outline": [
+    {
+      "topic": "Machining and Machinability",
+      "type": "content",
+      "content": "Introduce turning, milling and hole making as material removal processes. Explain the four factors used to assess machinability: cutting force and power, chip control, surface quality and tool life."
+    },
+    {
+      "topic": "Assessing Machinability",
+      "type": "multiple_choice",
+      "content": "Describe a short machining scenario with several observations made during cutting. Students select all observations that signal poor machinability (several answers are correct). Draw on power requirements, chip control, surface quality and tool wear."
+    },
+    {
+      "topic": "Mechanics of Cutting",
+      "type": "content",
+      "content": "Explain that material is removed by shearing, using the orthogonal cutting model. Introduce depth of cut, chip thickness, rake angle and the shear plane. Explain how these parameters influence the cutting process.",
+      "image": "images/cutting_geometry.png"
+    },
+    {
+      "topic": "Cutting Geometry",
+      "type": "drag_and_drop",
+      "content": "Students label the cutting geometry diagram: chip, rake face, shear plane and cutting tool.",
+      "image": "images/cutting_geometry.png"
+    },
+    {
+      "topic": "Cutting Ratio",
+      "type": "fill_in_the_blanks",
+      "content": "Introduce the cutting ratio r = t0/tc using the diagram. Test how depth of cut, chip thickness and the cutting ratio relate. Include one simple calculation of the cutting ratio.",
+      "image": "images/cutting_ratio.png"
+    },
+    {
+      "topic": "Cutting Power",
+      "type": "multiple_choice",
+      "content": "Describe a scenario in which the cutting speed or tool sharpness changes. Students predict the effect on cutting force or power and choose the best explanation."
+    },
+    {
+      "topic": "Chip Formation",
+      "type": "content",
+      "content": "Introduce the four common chip types: continuous, built-up edge, serrated and discontinuous. For each, explain how it looks, when it forms and how it affects machining."
+    },
+    {
+      "topic": "Chip Type Identification",
+      "type": "multimedia_choice",
+      "content": "Describe the appearance or formation conditions of one chip type. Students pick the image that matches the description. Feedback explains the visual features that distinguish each chip.",
+      "images": [
+        "images/continuous_chip.png",
+        "images/serrated_chip.png",
+        "images/built_up_edge.png"
+      ]
+    },
+    {
+      "topic": "Built-Up Edge Formation",
+      "type": "drag_the_words",
+      "content": "Write a short passage on how a built-up edge forms and why it harms surface finish. Include how cutting speed, rake angle and tool sharpness can be adjusted to reduce it.",
+      "image": "images/built_up_edge.png"
+    },
+    {
+      "topic": "Surface Finish and Integrity",
+      "type": "drag_and_drop",
+      "content": "Students sort machining characteristics into \"Surface finish\" and \"Surface integrity\". Items include geometric surface defects, vibration marks, residual stresses and changes to material properties."
+    },
+    {
+      "topic": "Cutting Fluids",
+      "type": "fill_in_the_blanks",
+      "content": "Test the main functions of cutting fluids: cooling, lubrication, reducing friction and wear, flushing away chips and protecting against corrosion. Include how cutting temperature affects dimensional accuracy."
+    },
+    {
+      "topic": "Machining: Final Review",
+      "type": "summary",
+      "content": "Review the key ideas: cutting mechanics, chip formation, surface quality and cutting fluids."
+    }
+  ],
+  "source_documents": [
+    "Lecture 3 - Fundamentals of Machining.pdf"
+  ],
+  "source_images": [
+    "images/cutting_geometry.png",
+    "images/cutting_ratio.png",
+    "images/built_up_edge.png",
+    "images/continuous_chip.png",
+    "images/serrated_chip.png"
+  ]
+}

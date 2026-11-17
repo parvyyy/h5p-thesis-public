@@ -1,0 +1,104 @@
+{
+  "title": "Denavit-Hartenberg Convention: Frames, Parameters and Forward Kinematics",
+  "duration_minutes": 10,
+  "learning_objectives": [
+    "Explain how the Denavit-Hartenberg (DH) convention standardises coordinate frames for serial robot manipulators.",
+    "Identify joint axes and assign consecutive frames from the relationship between their z axes.",
+    "Interpret the four DH parameters (theta, d, a and alpha), including which one varies for revolute and prismatic joints.",
+    "Distinguish frame assignment for skew, parallel and intersecting joint axes.",
+    "Use the ordered DH transforms and the chain rule to find the end-effector pose."
+  ],
+  "outline": [
+    {
+      "topic": "Why Use the DH Convention?",
+      "type": "content",
+      "content": "Recap the motivation: arbitrary frames need six parameters per link, while DH frames need only four. Using the link geometry, introduce the four parameters theta_i, d_i, a_i and alpha_i. Focus on purpose here and define each parameter in the following activities.",
+      "image": "images/dh_parameter_geometry.png"
+    },
+    {
+      "topic": "Label the Four DH Parameters",
+      "type": "drag_and_drop",
+      "content": "Students label the diagram with the four DH parameters. theta_i is the rotation about z_(i-1), d_i the offset along z_(i-1), a_i the length along x_i, and alpha_i the twist about x_i.",
+      "image": "images/dh_parameters_unlabelled.png"
+    },
+    {
+      "topic": "Four Motions in the Correct Order",
+      "type": "drag_the_words",
+      "content": "Write a short passage on the ordered transform from frame {i-1} to frame {i}. Rotate by theta_i about z_(i-1), translate d_i along z_(i-1), translate a_i along x_i, then rotate by alpha_i about x_i. Key terms: joint angle, link offset, link length, link twist, previous z axis, new x axis."
+    },
+    {
+      "topic": "Which Joint Does z0 Belong To?",
+      "type": "multiple_choice",
+      "content": "Using the two-joint robot, ask which axes are the actuation axes of joints 1 and 2. Correct answer: z_0 for joint 1 and z_1 for joint 2, since z_(i-1) belongs to joint i. Distractors are off by one or confuse link axes with joint axes. Feedback distinguishes joints, numbered 1 to n, from links, numbered 0 to n.",
+      "image": "images/joint_axes_robot.png"
+    },
+    {
+      "topic": "Choosing the Next Frame",
+      "type": "content",
+      "content": "Recap the frame assignment steps: place every z_i along a joint axis, choose the base frame, then choose each x_i and origin O_i from how z_(i-1) and z_i relate. y_i then follows from the right-hand rule. Explain the three cases: skew axes use the common normal, parallel axes have many possible common normals, and intersecting axes have a common normal of zero length.",
+      "image": "images/frame_cases_overview.png"
+    },
+    {
+      "topic": "Recognise the Intersecting-Axis Case",
+      "type": "multimedia_choice",
+      "content": "Ask which image shows consecutive joint axes z_(i-1) and z_i that intersect. Correct answer: Image C, where x_i is perpendicular to the plane of both axes and a_i is zero. Images A and B show skew and parallel axes.",
+      "images": [
+        "images/axes_skew.png",
+        "images/axes_parallel.png",
+        "images/axes_intersecting.png"
+      ]
+    },
+    {
+      "topic": "Assign Parameters for a Parallel-Axis Link",
+      "type": "multiple_choice",
+      "content": "The single revolute link has z_0 and z_1 parallel and pointing the same way. Ask which DH row is correct. Correct answer: theta_1 is the joint variable, d_1 = 0, a_1 is the link length and alpha_1 = 0. Distractors swap d and a, set alpha to 90 degrees, or treat theta as a prismatic displacement.",
+      "image": "images/parallel_joint_link.png"
+    },
+    {
+      "topic": "Revolute, Prismatic and Home-Position Offsets",
+      "type": "fill_in_the_blanks",
+      "content": "Use the SCARA robot to test that a revolute joint's variable is the angle theta and a prismatic joint's variable is the displacement d. Also test that theta may include a fixed home-position offset and that a_i is the link length.",
+      "image": "images/scara_joint_types.png"
+    },
+    {
+      "topic": "What Happens When the Axes Intersect?",
+      "type": "multiple_choice",
+      "content": "The example has theta_i = 30 degrees, d_i = 20 cm and alpha_i = 90 degrees. Ask which DH parameter must be zero when the axes intersect and O_i lies on the intersection. Correct answer: a_i = 0. Distractors pick theta_i, d_i or alpha_i; feedback explains that the offset and twist can still be non-zero.",
+      "image": "images/intersecting_axes_example.png"
+    },
+    {
+      "topic": "From the DH Table to Forward Kinematics",
+      "type": "content",
+      "content": "Recap that each DH row gives a homogeneous transform from frame {i-1} to frame {i}: Rz(theta_i), Tz(d_i), Tx(a_i), Rx(alpha_i). Using the chain-rule image, show that the end-effector pose is the ordered product of these transforms, and its translation part is the tool position. Mention the lecture's warning about home-position angle offsets.",
+      "image": "images/dh_chain_rule.png"
+    },
+    {
+      "topic": "Read the Forward-Kinematics Result",
+      "type": "multiple_choice",
+      "content": "Use Lecture Example 1: l_1 = 3, l_2 = 4, theta_1 = 25 degrees, theta_2 = 40 degrees, theta_3 = 0 and l_3 = 0. Ask which expression gives the end-effector x coordinate in frame {0}. Correct answer: 3*cos(25 degrees) + 4*cos(65 degrees), approximately 4.409. Distractors use theta_2 alone instead of the accumulated angle, swap sine and cosine, or subtract the link terms.",
+      "image": "images/planar_revolute_robot.png"
+    },
+    {
+      "topic": "DH Convention: Final Review",
+      "type": "summary",
+      "content": "Review the key ideas: z_(i-1) is the axis of joint i; theta and d act along the previous z axis, a and alpha along the new x axis; parallel versus intersecting axes, with a = 0 for intersecting axes; revolute theta versus prismatic d and home-angle offsets; forward kinematics as an ordered product of transforms."
+    }
+  ],
+  "source_documents": [
+    "Lecture 4 DH Convention 2026.pdf"
+  ],
+  "source_images": [
+    "images/dh_parameter_geometry.png",
+    "images/dh_parameters_unlabelled.png",
+    "images/joint_axes_robot.png",
+    "images/frame_cases_overview.png",
+    "images/axes_skew.png",
+    "images/axes_parallel.png",
+    "images/axes_intersecting.png",
+    "images/parallel_joint_link.png",
+    "images/scara_joint_types.png",
+    "images/intersecting_axes_example.png",
+    "images/dh_chain_rule.png",
+    "images/planar_revolute_robot.png"
+  ]
+}

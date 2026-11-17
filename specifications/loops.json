@@ -1,0 +1,90 @@
+{
+  "title": "For Loops, List Processing and range()",
+  "duration_minutes": 10,
+  "learning_objectives": [
+    "Explain how a for-loop processes a sequence and predict the output of a simple loop.",
+    "Use an empty list, a for-loop and append() to transform a list, including with if/else.",
+    "Distinguish the purposes of len(), min(), max(), sum(), all() and any().",
+    "Interpret one-, two- and three-argument range() calls, including the excluded stop value and integer steps.",
+    "Use a for-loop to build paired time and speed lists for the free-fall plotting project."
+  ],
+  "outline": [
+    {
+      "topic": "Why Use a for-Loop?",
+      "type": "content",
+      "content": "Motivate iteration with the greeting example: the same operation runs for many names, with only the name changing. Introduce the for-loop: the loop variable takes each item in turn, and the indented body runs once per item. Leave range() and append() for later slides.",
+      "image": "images/greetings_input_output.png"
+    },
+    {
+      "topic": "Complete the for-Loop Flowchart",
+      "type": "drag_and_drop",
+      "content": "Students label the flowchart: \"Check for next item\" (diamond), \"Assign next item\" (middle box) and \"Run loop body\" (lower box). Feedback explains that control returns to the check after the body runs, and the loop ends when no items are left.",
+      "image": "images/for_loop_flowchart_unlabelled.png"
+    },
+    {
+      "topic": "Trace a Loop over Values",
+      "type": "multiple_choice",
+      "content": "Show readings = [16, 20, 19] followed by a loop that prints r + 1 for each r. Ask what is printed. Correct answer: 17, 21 and 20 on separate lines. Distractors repeat the first value, treat r as an index, or print the list unchanged."
+    },
+    {
+      "topic": "Building a New List with append()",
+      "type": "content",
+      "content": "Recap the pattern: create an empty output list, loop over the input, compute a new value and append it inside the loop. Contrast storing results with append() against only printing them. Mention that Python also has built-in list functions: sum(), min(), max(), len(), all() and any().",
+      "image": "images/append_list_transformation.png"
+    },
+    {
+      "topic": "Predict a Conditional List Transformation",
+      "type": "multiple_choice",
+      "content": "Show a loop that cubes each number greater than zero, squares the rest, and appends each result to a new list. Use the input [3, -2, 0, 4] and ask for the resulting list. Correct answer: [27, 4, 0, 64]. Distractors ignore the else branch, apply one power to every number, reorder the list, or drop the zero."
+    },
+    {
+      "topic": "Match Built-in List Functions to Their Purpose",
+      "type": "drag_and_drop",
+      "content": "Students sort functions into \"Summarise numeric values\" (sum(), min(), max()), \"Count elements\" (len()) and \"Test Boolean values\" (all(), any()). Feedback: sum, min and max work on the values, len counts the elements, all checks that every value is True and any checks that at least one is."
+    },
+    {
+      "topic": "Where Should append() Go?",
+      "type": "multiple_choice",
+      "content": "A student wants to turn [2, 4, 6] into [4, 8, 12] with a for-loop and append(). Ask which code snippet does this correctly. Correct answer: create result = [] before the loop, then append num * 2 inside the loop. Distractors reset the list inside the loop, append only after the loop, or append the original value. Feedback explains how indentation decides what runs on each iteration."
+    },
+    {
+      "topic": "Using range() to Generate Loop Values",
+      "type": "content",
+      "content": "Explain range(stop), range(start, stop) and range(start, stop, step) with short examples. Stress that the start is included, the stop is excluded and the step sets the increment. range() only takes integers, and it produces a sequence a for-loop can iterate over rather than a list.",
+      "image": "images/range_one_two_args.png"
+    },
+    {
+      "topic": "Calculate the Numbers in a range()",
+      "type": "fill_in_the_blanks",
+      "content": "Test new range() examples, not the one shown in the image. range(6) has 6 values; the last value of range(3, 8) is 7; the last value of range(1, 10, 2) is 9; range(4, 4) has 0 values. Feedback explains the included start, excluded stop and step.",
+      "image": "images/range_three_args.png"
+    },
+    {
+      "topic": "Generate Half-Second Time Samples",
+      "type": "multiple_choice",
+      "content": "The project needs the times 0, 0.5, 1.0, ..., 40.0 seconds (81 values) without typing them all. Ask which loop builds time_list correctly. Correct answer: start with an empty list and append 0.5 * k for each k in range(81). Distractors use range(0, 40, 0.5) (a float step is invalid), range(40) (too few values) or range(81) without scaling."
+    },
+    {
+      "topic": "From Time Samples to a Speed Plot",
+      "type": "drag_the_words",
+      "content": "Write a short passage describing the project's second stage, with the graph as the goal. Loop over each time in time_list, call calc_free_fall_speed() to get its speed, and append() the result to speed_list. Then plot time on the horizontal axis and speed on the vertical axis. Key terms: time_list, time, calc_free_fall_speed(), append() and speed_list.",
+      "image": "images/free_fall_speed_graph.png"
+    },
+    {
+      "topic": "For Loops and Lists: Final Review",
+      "type": "summary",
+      "content": "Review the key ideas: the loop variable takes each value and the body runs once per item; appending transformed values to a new list, including with if/else; what len(), sum(), all() and any() do; the start, stop and step of range(); building aligned time and speed lists for the free-fall project. Leave out indexes, enumerate() and NumPy."
+    }
+  ],
+  "source_documents": [
+    "3A- For loops, list processing, the range function and a project.pdf"
+  ],
+  "source_images": [
+    "images/greetings_input_output.png",
+    "images/for_loop_flowchart_unlabelled.png",
+    "images/append_list_transformation.png",
+    "images/range_one_two_args.png",
+    "images/range_three_args.png",
+    "images/free_fall_speed_graph.png"
+  ]
+}

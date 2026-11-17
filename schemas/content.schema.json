@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "content"
+    },
+    "title": {
+      "type": "string",
+      "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+    },
+    "paragraphs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "1-3 short explanatory paragraphs (plain text, no HTML or markdown)."
+    },
+    "key_points": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "0-4 short bullet points summarising the key takeaways (plain text). Use [] for none."
+    },
+    "image": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+            },
+            "alt_text": {
+              "type": "string",
+              "description": "Concise description of what the image shows, for screen-reader users."
+            }
+          },
+          "required": [
+            "path",
+            "alt_text"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Image shown on this slide, or null for no image. Only supplied source images may be used."
+    }
+  },
+  "required": [
+    "type",
+    "title",
+    "paragraphs",
+    "key_points",
+    "image"
+  ],
+  "additionalProperties": false
+}

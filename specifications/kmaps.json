@@ -1,0 +1,92 @@
+{
+  "title": "Karnaugh Maps and Boolean Simplification",
+  "duration_minutes": 10,
+  "learning_objectives": [
+    "Locate minterms on three- and four-variable Karnaugh maps using Gray-code order and wrap-around adjacency.",
+    "Form valid groups of adjacent 1s and read simplified sum-of-products terms from them.",
+    "Distinguish implicants, prime implicants and essential prime implicants when choosing a cover.",
+    "Derive a product-of-sums expression by grouping 0s and applying De Morgan's theorem.",
+    "Use don't-care entries to simplify a function without changing its specified outputs."
+  ],
+  "outline": [
+    {
+      "topic": "Why Karnaugh Maps Work",
+      "type": "content",
+      "content": "Link two-level circuit optimisation to simplifying Boolean expressions. Using the three-variable map, explain that each cell is a minterm and the cells follow Gray-code order (00, 01, 11, 10). Neighbouring cells differ in exactly one variable, and the left and right edges wrap around.",
+      "image": "images/three_variable_map.png"
+    },
+    {
+      "topic": "Locate the Minterms",
+      "type": "drag_and_drop",
+      "content": "Students label the blank four-variable map with m0, m2, m8 and m15. AB labels the rows and CD labels the columns, both in 00, 01, 11, 10 order. Feedback explains how the binary value of ABCD gives each cell's position.",
+      "image": "images/blank_four_variable_map.png"
+    },
+    {
+      "topic": "Adjacency and Simplification",
+      "type": "fill_in_the_blanks",
+      "content": "Test that adjacent minterms differ in one bit and that opposite edges of the map are adjacent. Test that grouping two adjacent 1s removes one variable, and grouping four removes two."
+    },
+    {
+      "topic": "Grouping Ones to Form an SOP",
+      "type": "content",
+      "content": "Using Example 1, recap the SOP procedure: fill in the 1s, form rectangular groups of adjacent 1s and keep the variables that stay constant in each group. Stress using the largest useful groups, covering every 1 and avoiding unnecessary overlap. Point out the AB=01 row of four 1s, but leave its product term for the next question.",
+      "image": "images/sop_example_map.png"
+    },
+    {
+      "topic": "Which Groups Are Valid?",
+      "type": "drag_and_drop",
+      "content": "Students sort proposed groupings into \"Valid SOP grouping\" and \"Invalid SOP grouping\". Valid: rectangles of 1, 2, 4 or 8 adjacent 1s, groups that wrap around an edge, and overlapping groups. Invalid: diagonal-only contact, groups of three, and groups that include a 0."
+    },
+    {
+      "topic": "Read a Product Term from a Group",
+      "type": "multiple_choice",
+      "content": "Ask for the product term given by grouping the four 1s in row AB=01 of Example 1. Correct answer: A'B, since C and D change across the row and are eliminated. Distractors keep C or D, drop the complement on A, or swap A and B.",
+      "image": "images/sop_example_map.png"
+    },
+    {
+      "topic": "Implicants and the Covering Strategy",
+      "type": "drag_the_words",
+      "content": "Write a short passage defining an implicant, a prime implicant and an essential prime implicant. Then describe how to choose a cover: include every essential prime implicant, cover any remaining 1s with other prime implicants, and avoid unnecessary overlap."
+    },
+    {
+      "topic": "Select an Essential Prime Implicant",
+      "type": "multiple_choice",
+      "content": "Using the selection-rule map, ask which group must appear in every minimal cover. Correct answer: the four-cell group m0, m1, m4, m5, because it is the only prime implicant that covers m4. Distractors are smaller or non-essential groups from the same map.",
+      "image": "images/prime_implicants_map.png"
+    },
+    {
+      "topic": "Product of Sums: Group the Zeros",
+      "type": "content",
+      "content": "Using the POS example, explain the procedure: group the 0s to get an SOP for the complement, then apply De Morgan's theorem to get a POS for the original function. Contrast this with grouping 1s for an SOP. Point out that the whole CD=11 column is 0, but leave its sum factor for the next question.",
+      "image": "images/pos_example_map.png"
+    },
+    {
+      "topic": "Derive a POS Factor",
+      "type": "multiple_choice",
+      "content": "Ask which sum factor of the original function comes from the four 0s in column CD=11. Correct answer: (C' + D'), since the complement has the product CD and De Morgan's theorem complements each variable. Distractors confuse SOP with POS or complement the wrong variables.",
+      "image": "images/pos_example_map.png"
+    },
+    {
+      "topic": "Use Don't-Cares Strategically",
+      "type": "multiple_choice",
+      "content": "The map has 1s at m1, m3, m7, m11 and m15, and don't-cares at m0, m2 and m5. Ask how to treat the top row (AB=00), which reads X, 1, 1, X. Correct answer: treat both Xs as 1 to form a four-cell group, without having to use every other X. Distractors claim that an X must always be 0, must always be 1, or cannot be grouped.",
+      "image": "images/dont_care_map.png"
+    },
+    {
+      "topic": "Karnaugh Maps: Final Review",
+      "type": "summary",
+      "content": "Review the key ideas: Gray-code adjacency and wrap-around; valid groups and eliminated variables in SOP; prime and essential prime implicants; grouping 0s and De Morgan's theorem for POS; optional use of don't-cares."
+    }
+  ],
+  "source_documents": [
+    "ELEC2141 Karnaugh maps.pdf"
+  ],
+  "source_images": [
+    "images/three_variable_map.png",
+    "images/blank_four_variable_map.png",
+    "images/sop_example_map.png",
+    "images/prime_implicants_map.png",
+    "images/pos_example_map.png",
+    "images/dont_care_map.png"
+  ]
+}

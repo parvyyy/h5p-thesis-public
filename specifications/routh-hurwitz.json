@@ -1,0 +1,98 @@
+{
+  "title": "Stability and the Routh-Hurwitz Criterion",
+  "duration_minutes": 10,
+  "learning_objectives": [
+    "Distinguish BIBO, asymptotic and marginal stability using system responses and pole locations.",
+    "Classify pole configurations as stable, marginally stable or unstable, including repeated imaginary-axis poles.",
+    "Explain why positive characteristic-polynomial coefficients are necessary but not sufficient for stability.",
+    "Build a Routh array from a characteristic polynomial.",
+    "Use first-column sign changes to count right-half-plane poles and choose a stabilising feedback gain."
+  ],
+  "outline": [
+    {
+      "topic": "What Does Stability Mean?",
+      "type": "content",
+      "content": "Recap the two definitions shown in the image. BIBO stability: every bounded input gives a bounded output. Asymptotic stability: the response to initial conditions decays to zero. For LTI systems, a system is stable when all its poles lie strictly in the left-half plane.",
+      "image": "images/stability_definitions.png"
+    },
+    {
+      "topic": "Recognise Marginal Stability in the Pole Plane",
+      "type": "multimedia_choice",
+      "content": "Ask which pole-zero plot shows a marginally stable system. Correct answer: Image C, with simple poles on the imaginary axis and none in the right-half plane. Image A is stable, Image B is unstable (a right-half-plane pole cancelled by a zero) and Image D is unstable (a repeated pole at the origin). Feedback explains that pole-zero cancellation does not remove an unstable internal mode.",
+      "images": [
+        "images/pole_case_a.png",
+        "images/pole_case_b.png",
+        "images/pole_case_c.png",
+        "images/pole_case_d.png"
+      ]
+    },
+    {
+      "topic": "Sort Pole Configurations by Stability",
+      "type": "drag_and_drop",
+      "content": "Students sort pole configurations into \"Stable\", \"Marginally stable\" and \"Unstable\". Include all poles in the left-half plane, simple imaginary-axis poles, right-half-plane poles and repeated imaginary-axis poles."
+    },
+    {
+      "topic": "From a Characteristic Polynomial to a Routh Array",
+      "type": "content",
+      "content": "Explain that the Routh-Hurwitz test checks whether all roots lie in the left-half plane without solving for them. Using the diagram, show the first two rows: alternate coefficients starting from the leading one, then the coefficients in between, padded with zeros. Note that all coefficients being positive is necessary, but not sufficient, for stability.",
+      "image": "images/routh_initial_rows.png"
+    },
+    {
+      "topic": "Positive Coefficients: Necessary or Sufficient?",
+      "type": "multiple_choice",
+      "content": "Use the lecture quartic p(s) = s^4 + s^3 + 2s^2 + 5s + 2. Ask what can be concluded from its coefficients all being positive, before building the Routh array. Correct answer: it passes a necessary condition but does not prove stability. Distractors claim positivity guarantees stability, guarantees marginal stability, or implies a right-half-plane root. Feedback notes that this polynomial turns out to have two right-half-plane poles."
+    },
+    {
+      "topic": "Complete the First Two Routh Rows",
+      "type": "fill_in_the_blanks",
+      "content": "For p(s) = s^4 + s^3 + 2s^2 + 5s + 2, test the first two rows of the Routh array. The s^4 row is [1, 2, 2] and the s^3 row is [1, 5, 0]. Test the 5 in the s^3 row, the last 2 in the s^4 row and the padding zero."
+    },
+    {
+      "topic": "How the Next Routh Row Is Calculated",
+      "type": "content",
+      "content": "Using the diagram, describe the cross-multiplication rule for the next row, such as b1 = (a1*a2 - a3)/a1. Each new row is calculated from the two rows above it. Stress that the test looks only at the signs in the first column. Leave out the special cases where a first-column entry is zero.",
+      "image": "images/routh_b1_calculation.png"
+    },
+    {
+      "topic": "Calculate Entries in the Third Row",
+      "type": "fill_in_the_blanks",
+      "content": "Using the first two rows [1, 2, 2] and [1, 5, 0], test the cross-multiplication rule. The s^2 row is [-3, 2]. Also test that the negative first entry creates a sign change."
+    },
+    {
+      "topic": "Count the Right-Half-Plane Poles",
+      "type": "multiple_choice",
+      "content": "Using the completed Routh array, ask how many right-half-plane poles p(s) has. The first column is [1, 1, -3, 17/3, 2], with signs +, +, -, +, +. Correct answer: two, one for each sign change.",
+      "image": "images/quartic_routh_array.png"
+    },
+    {
+      "topic": "What Does the First Column Tell Us?",
+      "type": "drag_the_words",
+      "content": "Write a short passage stating the Routh-Hurwitz criterion. If every first-column entry has the same sign, all roots lie in the left-half plane. Otherwise, the number of sign changes equals the number of right-half-plane roots. Key terms: first column, same sign, sign changes, right-half plane, left-half plane."
+    },
+    {
+      "topic": "Select a Stabilising Feedback Gain",
+      "type": "multiple_choice",
+      "content": "For the feedback system shown, the closed-loop characteristic polynomial is p(s) = s^3 + 2s^2 + (K-1)s + K. Ask which range of K makes the closed-loop system stable. Correct answer: K > 2, since the first column is [1, 2, (K-2)/2, K]. Distractors: 0 < K < 2, K > 0 and K = 2.",
+      "image": "images/gain_feedback_block.png"
+    },
+    {
+      "topic": "Routh-Hurwitz: Final Review",
+      "type": "summary",
+      "content": "Review the key ideas: stable poles lie strictly in the left-half plane; simple versus repeated imaginary-axis poles; positive coefficients are necessary but not sufficient; building Routh rows and counting first-column sign changes; choosing K > 2 in the feedback example."
+    }
+  ],
+  "source_documents": [
+    "MMAN3200 W3L2 - Routh Hurwitz criterion.pdf"
+  ],
+  "source_images": [
+    "images/stability_definitions.png",
+    "images/pole_case_a.png",
+    "images/pole_case_b.png",
+    "images/pole_case_c.png",
+    "images/pole_case_d.png",
+    "images/routh_initial_rows.png",
+    "images/routh_b1_calculation.png",
+    "images/quartic_routh_array.png",
+    "images/gain_feedback_block.png"
+  ]
+}

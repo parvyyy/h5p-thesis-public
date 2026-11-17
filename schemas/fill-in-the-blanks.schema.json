@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "fill_in_the_blanks"
+    },
+    "title": {
+      "type": "string",
+      "description": "Short slide title (max ~6 words), shown at the top of the slide and in the navigation menu."
+    },
+    "instructions": {
+      "type": "string",
+      "description": "One sentence telling the student what to do."
+    },
+    "sentences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "One sentence (plain text) with ___ (three underscores) at each gap, e.g. 'When the depth of cut increases, the cutting ratio ___.' 1-2 gaps. No asterisks."
+          },
+          "blanks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "description": "The answer the student types: 1-3 words or a number, written exactly as in \"options\". Only letters, digits, spaces, hyphens, decimal points, commas and % (no symbols, subscripts, Greek letters or formulas)."
+                },
+                "options": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "2-4 choices shown in bold brackets before the gap, e.g. [\"increases\", \"decreases\", \"stays the same\"]. Contains the answer exactly once; the others are plausible wrong answers of the same kind. Only letters, digits, spaces, hyphens, decimal points, commas and % (no symbols, subscripts, Greek letters or formulas)."
+                }
+              },
+              "required": [
+                "answer",
+                "options"
+              ],
+              "additionalProperties": false
+            },
+            "description": "One entry per ___ gap, in the order the gaps appear in the sentence."
+          }
+        },
+        "required": [
+          "text",
+          "blanks"
+        ],
+        "additionalProperties": false
+      },
+      "description": "2-5 sentences, each with 1-2 gaps."
+    },
+    "feedback": {
+      "type": "object",
+      "properties": {
+        "all_correct": {
+          "type": "string",
+          "description": "Shown when the student gets everything right. One sentence that reinforces the key idea."
+        },
+        "not_all_correct": {
+          "type": "string",
+          "description": "Shown otherwise. One sentence that points the student back to the key idea without giving away the answers."
+        }
+      },
+      "required": [
+        "all_correct",
+        "not_all_correct"
+      ],
+      "additionalProperties": false,
+      "description": "Overall feedback for the activity."
+    },
+    "image": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "Exact path of one of the supplied source images, e.g. 'images/cutting_geometry.png'."
+            },
+            "alt_text": {
+              "type": "string",
+              "description": "Concise description of what the image shows, for screen-reader users."
+            }
+          },
+          "required": [
+            "path",
+            "alt_text"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Image shown on this slide, or null for no image. Only supplied source images may be used."
+    }
+  },
+  "required": [
+    "type",
+    "title",
+    "instructions",
+    "sentences",
+    "feedback",
+    "image"
+  ],
+  "additionalProperties": false
+}
