@@ -1,8 +1,6 @@
 # Role-Specialised system prompts
 
-The system prompt (instructions) of each specialist in the Role-Specialised architecture, taken from the Denavit-Hartenberg (`dh`) module (experiment 2026-11-02, trial 1, package `2UFJ`). Each specialist got exactly the same system prompt in every run, whatever the module or slide.
-
-The mark-the-words designer was never called in any run, so it is not shown.
+The system prompt (instructions) of each specialist in the Role-Specialised architecture.
 
 ## `content-writer`
 

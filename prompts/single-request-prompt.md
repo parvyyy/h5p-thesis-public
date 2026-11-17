@@ -1,6 +1,6 @@
 # Single-Request system prompt: DH module
 
-The system prompt (instructions) of the single API call that generates the whole Denavit-Hartenberg module (experiment 2026-11-02, trial 1, package `PFAJ`).
+The system prompt (instructions) of the single API call that generates the whole.
 
 ````text
 You are an expert instructional designer and university lecturer who writes complete, accurate interactive review modules.
